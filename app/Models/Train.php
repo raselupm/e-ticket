@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Train extends Model
 {
     use HasFactory;
+
+    public function bogis() {
+        return $this->hasMany(Bogi::class, 'train_id');
+    }
 }

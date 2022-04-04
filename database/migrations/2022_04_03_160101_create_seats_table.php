@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('bogi_id');
+            $table->unsignedBigInteger('train_id');
             $table->unsignedBigInteger('type')->default(0)->comment('0=shovon,1=shovon chair');
             $table->unsignedBigInteger('booked')->default(0)->comment('0=open,1=booked');
             $table->timestamps();
 
             $table->foreign('bogi_id')->references('id')->on('bogis');
+            $table->foreign('train_id')->references('id')->on('trains');
         });
     }
 
