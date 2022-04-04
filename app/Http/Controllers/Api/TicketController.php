@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
+use App\Models\Train;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -18,6 +20,28 @@ class TicketController extends Controller
         $data = [];
 
         // search train on that specific date
+        $trains = Train::where('date', $request->doj)->get();
+        foreach($trains as $train) {
+            $schedule = Schedule::where('station_id', $request->to)->where('train_id', $train->id)->first();
+
+            if(!empty($schedule)) {
+                // has schedule
+
+                $data[] = [
+                    'train_name' => $train->name,
+                    'train_route' => 'test route',
+                    'dep_time' => date('F j, Y', strtotime($train->date)) . ' - ' . date('H:i:a', strtotime($schedule->time)),
+                    'seats_available' => '',
+                    'available' => [
+                        [
+                            'type' => '',
+                            'quantity' => '',
+                            'fare' => ''
+                        ]
+                    ],
+                ];
+            }
+        }
 
         // search if that train has schedule on requested station
 
@@ -37,6 +61,6 @@ class TicketController extends Controller
 //        ];
 
 
-        return response()->json('ok', 200);
+        return response()->json($data, 200);
     }
 }
