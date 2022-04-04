@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('booked')->default(0)->comment('0=open,1=booked');
             $table->timestamps();
 
-            $table->foreign('bogi_id')->references('id')->on('bogis');
+            $table->foreign('bogi_id')->references('id')->on('bogis')->onDelete('cascade');
             $table->foreign('train_id')->references('id')->on('trains');
         });
     }

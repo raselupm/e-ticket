@@ -7,8 +7,11 @@ use App\Models\Schedule;
 use App\Models\Seat;
 use App\Models\Station;
 use App\Models\Train;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +22,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        $user = new User();
+        $user->name = 'Rasel Ahmed';
+        $user->email = 'eticket@onekshohoz.com';
+        $user->password = Hash::make('eticket@onekshohoz.com');
+        $user->remember_token = Str::random(10);
+        $user->save();
+
+
         foreach (eticket_stations() as $item) {
             $station = new Station();
             $station->name = $item['name'];

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/trains', [AdminController::class, 'trains'])->name('trains');
+    Route::get('/edit-train/{id}', [AdminController::class, 'editTrain'])->name('edit-train');
+    Route::post('/delete-bogi/{id}', [AdminController::class, 'deleteBogi'])->name('delete-bogi');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
