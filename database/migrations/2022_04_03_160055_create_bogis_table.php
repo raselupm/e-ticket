@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('train_id');
+            $table->unsignedBigInteger('style')->default(1);
             $table->timestamps();
 
             $table->foreign('train_id')->references('id')->on('trains');

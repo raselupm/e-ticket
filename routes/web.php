@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/save-train', [TrainController::class, 'saveTrain'])->name('save-train');
     Route::get('/edit-train/{id}', [TrainController::class, 'editTrain'])->name('edit-train');
     Route::post('/delete-bogi/{id}', [TrainController::class, 'deleteBogi'])->name('delete-bogi');
+    Route::post('/add-bogi/{train_id}', [TrainController::class, 'addBogi'])->name('add-bogi');
 
     Route::get('/list-stations', [StationController::class, 'listStations']);
 });

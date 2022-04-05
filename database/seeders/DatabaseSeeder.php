@@ -84,7 +84,6 @@ class DatabaseSeeder extends Seeder
                 for ($i = 0; $i <= 30; $i++) {
                     $seat = new Seat();
                     $seat->name = $bogi->name . '-' . $i;
-                    $seat->type = rand(0,1);
                     $seat->bogi_id = $bogi->id;
                     $seat->train_id = $train->id;
                     $seat->save();

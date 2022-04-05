@@ -45,6 +45,24 @@
                 </div>
             </div>
             @endforeach
+
+            <h3>Add a bogi</h3>
+            <form method="post" action="{{route('add-bogi', $train->id)}}" class="flex"> @csrf
+                <div class="w-64 mr-4">
+                    <input type="text" class="eticket-input" placeholder="Bogi name" name="name">
+                </div>
+                <div class="w-64 mr-4">
+                    <select class="eticket-input" name="style">
+                        <option value="">Select a style</option>
+                        @for($i= 1; $i <= 10; $i++)
+                            <option value="{{$i}}">Style - {{$i}}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="min-w-max">
+                    <button class="eticket-btn" type="submit">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </x-app-layout>
