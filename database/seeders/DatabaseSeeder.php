@@ -31,27 +31,50 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
 
-        foreach (eticket_stations() as $item) {
-            $station = new Station();
-            $station->name = $item['name'];
-            $station->address = $item['address'];
-            $station->lat = $item['lat'];
-            $station->lon = $item['lon'];
-
-            $station->save();
-        }
+        Station::insert([
+            [
+                'name' => 'Dhaka',
+                'address' => 'Dhaka',
+                'lat' => 90.34434,
+                'lon' => 92.32434,
+            ],
+            [
+                'name' => 'Dhaka Bimanbondor',
+                'address' => 'Dhaka Bimanbondor',
+                'lat' => 90.34334,
+                'lon' => 92.432434,
+            ],
+            [
+                'name' => 'Khulna',
+                'address' => 'Khulna',
+                'lat' => 90.3542334,
+                'lon' => 92.3432634,
+            ]
+        ]);
 
 
         //
-        foreach (eticket_trains() as $item) {
-            $train = new Train();
-            $train->name = $item['name'];
-            $train->date = date('Y-m-d', strtotime($item['date']));
-            $train->home_station_id = $item['home_station_id'];
-            $train->start_time = date('h:i:s', strtotime($item['start_time']));
 
-            $train->save();
+        Train::insert(
+            [
+                [
+                    'name' => 'Suborno Express',
+                    'date' => '2022-01-06',
+                    'home_station_id' => 1,
+                    'start_time' => '06:00'
+                ],
+                [
+                    'name' => 'Chitra Express',
+                    'date' => '2022-01-06',
+                    'home_station_id' => 1,
+                    'start_time' => '11:00'
+                ]
+            ]
+        );
 
+
+        $trains = Train::all();
+        foreach ($trains as $train) {
             foreach (eticket_bogis() as $bogiItem) {
                 $bogi = new Bogi();
                 $bogi->name = $bogiItem;
@@ -77,8 +100,5 @@ class DatabaseSeeder extends Seeder
         $schedule->s_chair_price = 15;
         $schedule->f_chair_price = 25;
         $schedule->save();
-
-
-
     }
 }

@@ -30,6 +30,7 @@
                         <li class="w-32 mr-3 {{$seat->booked ? 'bg-red-500' : 'bg-gray-100'}} p-4 text-center mb-3 relative single-seat">
                             {{$seat->name}}
 
+                            @if(!$seat->booked)
                             <form onsubmit="return confirm('Are you sure?');" action="{{route('delete-bogi', $bogi->id)}}" method="post" class="hidden absolute right-2 top-2"> @csrf
                                 <button type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -37,6 +38,7 @@
                                     </svg>
                                 </button>
                             </form>
+                            @endif
                         </li>
                         @endforeach
                     </ul>

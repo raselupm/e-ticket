@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TrainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +16,11 @@ use App\Http\Controllers\AdminController;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/trains', [AdminController::class, 'trains'])->name('trains');
-    Route::get('/edit-train/{id}', [AdminController::class, 'editTrain'])->name('edit-train');
-    Route::post('/delete-bogi/{id}', [AdminController::class, 'deleteBogi'])->name('delete-bogi');
+    Route::get('/trains', [TrainController::class, 'trains'])->name('trains');
+    Route::get('/add-train', [TrainController::class, 'addTrain'])->name('add-train');
+    Route::post('/save-train', [TrainController::class, 'saveTrain'])->name('save-train');
+    Route::get('/edit-train/{id}', [TrainController::class, 'editTrain'])->name('edit-train');
+    Route::post('/delete-bogi/{id}', [TrainController::class, 'deleteBogi'])->name('delete-bogi');
 });
 
 require __DIR__.'/auth.php';

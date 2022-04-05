@@ -5,7 +5,7 @@
                 {{ __('Trains') }}
             </h2>
 
-            <a href="">Add new train</a>
+            <a href="{{route('add-train')}}">Add new train</a>
         </div>
     </x-slot>
 
