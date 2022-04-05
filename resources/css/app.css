@@ -15,3 +15,20 @@
 .eticket-label {
     @apply uppercase text-sm mb-2 cursor-pointer
 }
+
+
+.mx-datepicker {
+    min-width: 100%;
+}
+
+.mx-input-wrapper .mx-input {
+    height: auto;
+    padding: 10px;
+    box-shadow: 0 0 0;
+    border-color: #6a7280;
+}
+
+.vs--searchable .vs__dropdown-toggle {
+    padding: 6px;
+    border-color: #6a7280;
+}

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TrainController;
+use App\Http\Controllers\StationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,8 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/save-train', [TrainController::class, 'saveTrain'])->name('save-train');
     Route::get('/edit-train/{id}', [TrainController::class, 'editTrain'])->name('edit-train');
     Route::post('/delete-bogi/{id}', [TrainController::class, 'deleteBogi'])->name('delete-bogi');
+
+    Route::get('/list-stations', [StationController::class, 'listStations']);
 });
 
 require __DIR__.'/auth.php';
