@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Seat;
 use App\Models\Train;
 use Illuminate\Http\Request;
 
-class TicketController extends Controller
+class FrontendController extends Controller
 {
+    public function home() {
+        return view('home');
+    }
+
     public function check(Request $request) {
         $request->validate([
             'from' => 'required|integer',
@@ -65,28 +68,8 @@ class TicketController extends Controller
                     'seats_available' => $total_seats,
                     'available' => $available,
                 ];
-
-                //return response()->json($unique_available_type);
-
             }
         }
-
-        // search if that train has schedule on requested station
-
-        // if found display data
-//        $data[] = [
-//            'train_name' => '',
-//            'train_route' => '',
-//            'dep_time' => '',
-//            'seats_available' => '',
-//            'available' => [
-//                [
-//                    'type' => '',
-//                    'quantity' => '',
-//                    'fare' => ''
-//                ]
-//            ],
-//        ];
 
 
         return response()->json($data, 200);

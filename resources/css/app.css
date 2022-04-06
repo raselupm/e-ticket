@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.container {
+    @apply mx-auto;
+    max-width: 1200px;
+}
+
 .single-seat:hover form {display: block}
 
 .eticket-btn {

@@ -16,6 +16,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 Vue.component('add-train', require('./components/AddTrain').default);
+Vue.component('home', require('./components/Home').default);
 
 
 
