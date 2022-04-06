@@ -12,4 +12,12 @@ class Bogi extends Model
     public function seats() {
         return $this->hasMany(Seat::class, 'bogi_id');
     }
+
+    public function availableSeats($bogi_id) {
+        $bogi = Bogi::findOrFail($bogi_id);
+
+        $seats = Seat::where('bogi_id', $bogi_id)->where('booked', 0)->get();
+
+        return count($seats);
+    }
 }

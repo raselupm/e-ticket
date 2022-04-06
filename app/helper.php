@@ -6,7 +6,7 @@ function eticket_bogis() {
 
 function type_number_by_name() {
     return [
-        0 => 'Shovon',
-        1 => 'Shovon Chair'
+        1 => 'Shovon',
+        2 => 'Shovon Chair'
     ];
 }

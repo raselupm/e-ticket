@@ -12,4 +12,15 @@ class Train extends Model
     public function bogis() {
         return $this->hasMany(Bogi::class, 'train_id');
     }
+
+    public function availableSeats($train_id) {
+        $train = Train::findOrFail($train_id);
+
+        $available = 0;
+        foreach($train->bogis as $bogi) {
+            $available += $bogi->availableSeats($bogi->id);
+        }
+
+        return $available;
+    }
 }

@@ -30,42 +30,30 @@ class FrontendController extends Controller
 
             if(!empty($schedule)) {
                 // has schedule
-                $available_type = [];
-                $seatsAvailable = Seat::where('train_id', $train->id)->where('booked', 0)->get();
 
-
-                foreach ($seatsAvailable as $seatAvailable) {
-                    $available_type[] = $seatAvailable->type;
-                }
-
-                $unique_available_type = array_unique($available_type);
-
-
-                $total_seats = 0;
                 $available = [];
-                foreach($unique_available_type as $type) {
-                    $seatsTypeAvailable = Seat::where('train_id', $train->id)->where('booked', 0)->where('type', $type)->get();
 
-                    if($type == 1) {
+                foreach($train->bogis as $bogi) {
+                    if($bogi->style == 1) {
                         $fare = $schedule->s_chair_price;
                     } else {
                         $fare = $schedule->shovon_price;
                     }
 
+
                     $available[] = [
-                        'type' => type_number_by_name()[$type],
-                        'quantity' => count($seatsTypeAvailable),
+                        'type' => type_number_by_name()[$bogi->style],
+                        'quantity' => $bogi->availableSeats($bogi->id),
                         'fare' => $fare
                     ];
-
-                    $total_seats += count($seatsTypeAvailable);
                 }
+
 
                 $data[] = [
                     'train_name' => $train->name,
                     'train_route' => 'test route',
                     'dep_time' => date('F j, Y', strtotime($train->date)) . ' - ' . date('H:i:a', strtotime($schedule->time)),
-                    'seats_available' => $total_seats,
+                    'seats_available' => $train->availableSeats($train->id),
                     'available' => $available,
                 ];
             }
