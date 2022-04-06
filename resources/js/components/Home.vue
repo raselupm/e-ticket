@@ -5,7 +5,7 @@
 
       <div v-if="loading">Loading</div>
 
-      <form @submit.prevent="searchTrains" v-else class="flex -mx-4 items-end">
+      <form @submit.prevent="searchTrains" v-else class="flex -mx-4 items-end mb-10">
           <div class="w-1/3 px-4">
               <label for="from" class="eticket-label">From station</label>
               <v-select id="from" v-model="from" :options="stations"/>
@@ -28,8 +28,29 @@
           </div>
       </form>
 
-
-      {{trains}}
+      <table v-if="trains.length" class="table-auto w-full">
+          <tr>
+              <th class="border px-4 py-2">Train</th>
+              <th class="border px-4 py-2">Dep. Time</th>
+              <th class="border px-4 py-2">Seats Available</th>
+              <th class="border px-4 py-2">Fare</th>
+          </tr>
+          <tr v-for="item in trains">
+              <td class="border px-4 py-2">
+                  <h4>{{item.train_name}}</h4>
+                  <p>{{item.train_route}}</p>
+              </td>
+              <td class="border px-4 py-2">{{item.dep_time}}</td>
+              <td class="border px-4 py-2">{{item.seats_available}}</td>
+              <td class="border px-4 py-2">
+                  <ul>
+                      <li v-for="fare in item.available">
+                          Type: {{fare.type}} - available: {{fare.quantity}} - Fare: {{fare.fare}}
+                      </li>
+                  </ul>
+              </td>
+          </tr>
+      </table>
   </div>
 </template>
 

@@ -5201,6 +5201,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Home",
   data: function data() {
@@ -24267,7 +24288,7 @@ var render = function () {
       : _c(
           "form",
           {
-            staticClass: "flex -mx-4 items-end",
+            staticClass: "flex -mx-4 items-end mb-10",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -24352,7 +24373,55 @@ var render = function () {
             _vm._m(0),
           ]
         ),
-    _vm._v("\n\n\n    " + _vm._s(_vm.trains) + "\n"),
+    _vm._v(" "),
+    _vm.trains.length
+      ? _c(
+          "table",
+          { staticClass: "table-auto w-full" },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._l(_vm.trains, function (item) {
+              return _c("tr", [
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _c("h4", [_vm._v(_vm._s(item.train_name))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(item.train_route))]),
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(_vm._s(item.dep_time)),
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _vm._v(_vm._s(item.seats_available)),
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "border px-4 py-2" }, [
+                  _c(
+                    "ul",
+                    _vm._l(item.available, function (fare) {
+                      return _c("li", [
+                        _vm._v(
+                          "\n                        Type: " +
+                            _vm._s(fare.type) +
+                            " - available: " +
+                            _vm._s(fare.quantity) +
+                            " - Fare: " +
+                            _vm._s(fare.fare) +
+                            "\n                    "
+                        ),
+                      ])
+                    }),
+                    0
+                  ),
+                ]),
+              ])
+            }),
+          ],
+          2
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [
@@ -24364,6 +24433,22 @@ var staticRenderFns = [
       _c("button", { staticClass: "eticket-btn", attrs: { type: "submit" } }, [
         _vm._v("Search"),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Train")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Dep. Time")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "border px-4 py-2" }, [
+        _vm._v("Seats Available"),
+      ]),
+      _vm._v(" "),
+      _c("th", { staticClass: "border px-4 py-2" }, [_vm._v("Fare")]),
     ])
   },
 ]
